@@ -12,6 +12,9 @@ db.authenticate()
 const server = express();
 const PORT = process.env.PORT || 8000;
 
+server.use(express.json());
+server.use(express.urlencoded({ extended: false }));
+
 server.get('/', (_, res) => {
   res.send('root page');
 });

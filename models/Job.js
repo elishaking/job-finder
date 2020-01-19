@@ -14,7 +14,7 @@ const Job = db.define('job', {
   budget: {
     type: Sequelize.STRING
   },
-  contact_email: {
+  contactEmail: {
     type: Sequelize.STRING
   }
 });

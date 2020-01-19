@@ -17,6 +17,33 @@ const findJobs = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+/**
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+const addJob = (req, res) => {
+  const data = req.body;
+
+  // const {title, technologies, budget, description, contactEmail} = data;
+  Job.create(data)
+    .then((job) => {
+      res.status(201)
+        .json({
+          success: true,
+          job
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+
+      res.status(500)
+        .json({
+          success: false
+        });
+    });
+};
+
 module.exports = {
-  findJobs
+  findJobs,
+  addJob
 };
