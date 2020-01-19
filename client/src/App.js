@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
 import Home from './components/routes/Home';
+import Jobs from './components/routes/Jobs';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Navbar />
 
         <Route path="/" component={Home} exacts />
+        <Route path="/jobs" component={Jobs} exacts />
       </Router>
     </div>
   );
