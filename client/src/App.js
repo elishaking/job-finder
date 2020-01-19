@@ -11,8 +11,8 @@ function App() {
       <Router>
         <Navbar />
 
-        <Route path="/" component={Home} exacts />
-        <Route path="/jobs" component={Jobs} exacts />
+        <Route path="/" component={Home} exact />
+        <Route path="/jobs" component={Jobs} exact />
       </Router>
     </div>
   );

@@ -11,10 +11,18 @@ const findJobs = (req, res) => {
       console.log(jobs);
       res.status(200)
         .json({
-          success: true
+          success: true,
+          jobs
         });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+
+      res.status(500)
+        .json({
+          success: false
+        });
+    });
 };
 
 /**
