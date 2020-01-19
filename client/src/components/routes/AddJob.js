@@ -6,11 +6,36 @@ export default class AddJob extends Component {
     technologies: '',
     budget: '',
     description: '',
-    contactEmail: ''
+    contactEmail: '',
+
+    loading: false
   };
 
   addJob = (e) => {
     e.preventDefault();
+
+    const { title, technologies, budget, description, contactEmail } = this.state;
+
+    const newJob = {
+      title, technologies, budget, description, contactEmail
+    };
+
+    this.setState({ loading: true });
+
+    fetch('/api/v1/jobs', {
+      method: 'POST',
+      body: JSON.stringify(newJob),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((res) => res.json())
+      .then((data) => {
+        this.setState({ loading: false });
+      })
+      .catch((err) => {
+        this.setState({ loading: false });
+        alert('Something went wrong, please try again');
+      });
   };
 
   onChange = (e) => {
