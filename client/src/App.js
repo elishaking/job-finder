@@ -4,6 +4,7 @@ import './App.scss';
 import Navbar from './components/Navbar';
 import Home from './components/routes/Home';
 import Jobs from './components/routes/Jobs';
+import AddJob from './components/routes/AddJob';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
         <Route path="/" component={Home} exact />
         <Route path="/jobs" component={Jobs} exact />
+        <Route path="/add-job" component={AddJob} exact />
       </Router>
     </div>
   );
