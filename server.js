@@ -16,4 +16,8 @@ server.get('/', (_, res) => {
   res.send('root page');
 });
 
+// routes
+const jobs = require('./routes/jobs');
+server.use('/api/v1/jobs', jobs);
+
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
