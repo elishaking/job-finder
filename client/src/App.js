@@ -5,9 +5,11 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-    </Router>
+    <div style={{ padding: "3em 10vw" }}>
+      <Router>
+        <Navbar />
+      </Router>
+    </div>
   );
 }
 
