@@ -1,9 +1,9 @@
 const express = require('express');
-const dotenv = require('dotenv');
-const db = require('./config/db');
-// const path = require('path');
 
+const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' });
+
+const db = require('./config/db');
 
 db.authenticate()
   .then(() => console.log('DB connected'))
