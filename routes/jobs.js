@@ -1,8 +1,7 @@
 const router = require('express').Router();
+const { findJobs } = require('../controllers/jobs');
 
 router.route('/')
-  .get((_, res) => {
-    res.send('Jobs');
-  });
+  .get(findJobs);
 
 module.exports = router;
