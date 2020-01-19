@@ -58,3 +58,41 @@ a {
     }
   }
 }
+
+.add-job-form {
+  max-width: 700px;
+  margin: 3em auto;
+
+  input {
+    display: block;
+    width: 100%;
+    margin: .3em 0 1em 0;
+    padding: 0.7em 1.4em;
+    outline: none;
+    font-family: inherit;
+    border-radius: 5px;
+    border: 1px solid $baseColor;
+    transition: 0.3s ease-in-out;
+  }
+
+  input:focus {
+    box-shadow: 0 0 5px 1px rgba($color: $baseColor, $alpha: .3);
+  }
+
+  button {
+    background-color: $baseColor;
+    color: white;
+    border-radius: 5px;
+    padding: 0.7em 1.4em;
+    margin-top: 1em;
+    outline: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+
+  button:hover {
+    opacity: 0.7;
+  }
+}

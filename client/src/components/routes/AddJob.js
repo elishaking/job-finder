@@ -24,7 +24,7 @@ export default class AddJob extends Component {
       <div>
         <h1>Add Job</h1>
 
-        <form onSubmit={this.addJob}>
+        <form className="add-job-form" onSubmit={this.addJob}>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -59,7 +59,7 @@ export default class AddJob extends Component {
 
           <label htmlFor="title">Contact Email</label>
           <input
-            type="text"
+            type="email"
             name="contactEmail"
             placeholder="Your email"
             onChange={this.onChange}
