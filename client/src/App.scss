@@ -1,3 +1,5 @@
+$baseColor: darken($color: cornflowerblue, $amount: 30);
+
 nav {
   display: flex;
   align-items: center;
@@ -16,4 +18,43 @@ nav {
 
 a {
   text-decoration: none;
+}
+
+.jobs {
+  margin-top: 1em;
+
+  * {
+    transition: 0.3s ease-in-out;
+  }
+
+  .job {
+    margin-bottom: 1em;
+    // background-color: $baseColor;
+    // color: white;
+    border: 1px solid $baseColor;
+    padding: 1em 2em;
+    border-radius: 17px;
+    // box-shadow: 0 0 10px 3px rgba($color: #000000, $alpha: .3);
+    cursor: pointer;
+
+    h2 {
+      color: $baseColor;
+    }
+
+    p {
+      margin: 0.7em 0;
+    }
+
+    small {
+      color: gray;
+    }
+  }
+
+  .job:hover {
+    background-color: $baseColor;
+
+    * {
+      color: white;
+    }
+  }
 }
