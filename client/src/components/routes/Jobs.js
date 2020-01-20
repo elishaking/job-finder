@@ -5,24 +5,24 @@ export default class Jobs extends Component {
   state = {
     jobs: [],
 
-    loading: false
+    loading: true
   };
 
   componentDidMount() {
     if (this.props.location.state) {
       const { jobs } = this.props.location.state;
-      this.setState({ jobs });
+      this.setState({ jobs, loading: false });
 
       return;
     }
 
-    this.setState({ loading: true });
     fetch('/api/v1/jobs')
       .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
+      .then((resData) => {
+        console.log(resData)
+        if (resData.success) {
           this.setState({
-            jobs: data.jobs,
+            jobs: resData.data,
             loading: false
           });
         }
