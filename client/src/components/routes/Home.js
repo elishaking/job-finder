@@ -1,10 +1,51 @@
 import React, { Component } from 'react'
 
 export default class Home extends Component {
+  state = {
+    search: '',
+
+    loading: false
+  };
+
+  searchJobs = (e) => {
+    e.preventDefault();
+
+    this.setState({ loading: true });
+
+    const { search } = this.state;
+    fetch(`/api/v1/jobs/search?term=${search}`)
+      .then((res) => res.json())
+      .then((resData) => {
+        this.setState({ loading: false });
+
+        this.props.history.push({
+          pathname: '/jobs',
+          state: { jobs: resData.data }
+        });
+      })
+      .catch((err) => {
+        this.setState({ loading: false });
+        alert('Something went wrong');
+      });
+  };
+
+  onChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
   render() {
     return (
       <div>
         <h1>Home</h1>
+
+        <form onSubmit={this.searchJobs} className="search-form">
+          <input
+            type="text"
+            name="search"
+            onChange={this.onChange} />
+        </form>
       </div>
     )
   }
