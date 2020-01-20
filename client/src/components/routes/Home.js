@@ -43,11 +43,14 @@ export default class Home extends Component {
           <input
             type="text"
             name="search"
+            placeholder="e.g. react, MERN, etc"
             onChange={this.onChange} />
 
           <div className="actions">
             <button type="submit">Search</button>
-            <button className="outline">All Jobs</button>
+            <button
+              className="outline"
+              onClick={() => this.props.history.push('/jobs')}>All Jobs</button>
           </div>
         </form>
       </div>
