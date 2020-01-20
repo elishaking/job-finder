@@ -61,12 +61,17 @@ a {
 
 .add-job-form {
   max-width: 700px;
-  margin: 3em auto;
+  margin: 2em auto 3em auto;
+
+  label {
+    display: block;
+    margin-top: 1em;
+  }
 
   input {
     display: block;
     width: 100%;
-    margin: .3em 0 1em 0;
+    margin-top: .3em;
     padding: 0.7em 1.4em;
     outline: none;
     font-family: inherit;
@@ -79,12 +84,25 @@ a {
     box-shadow: 0 0 5px 1px rgba($color: $baseColor, $alpha: .3);
   }
 
+  input.error {
+    border: 1px solid red;
+  }
+
+  input.error:focus {
+    box-shadow: 0 0 5px 1px rgba($color: red, $alpha: .3);
+  }
+
+  small {
+    color: red;
+  }
+
   button {
+    display: block;
     background-color: $baseColor;
     color: white;
     border-radius: 5px;
     padding: 0.7em 1.4em;
-    margin-top: 1em;
+    margin-top: 2em;
     outline: none;
     border: none;
     font-family: inherit;

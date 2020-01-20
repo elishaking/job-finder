@@ -65,6 +65,7 @@ export default class AddJob extends Component {
             name="title"
             placeholder="e.g. Full Stack Engineer"
             onChange={this.onChange}
+            className={errors.title ? 'error' : ''}
           />
           {errors.title && <small>{errors.title}</small>}
 
@@ -74,6 +75,7 @@ export default class AddJob extends Component {
             name="technologies"
             placeholder="e.g. PERN, Angular, MERN, Vue"
             onChange={this.onChange}
+            className={errors.technologies ? 'error' : ''}
           />
           {errors.technologies && <small>{errors.technologies}</small>}
 
@@ -83,6 +85,7 @@ export default class AddJob extends Component {
             name="budget"
             placeholder="e.g. 500000"
             onChange={this.onChange}
+            className={errors.budget ? 'error' : ''}
           />
           {errors.budget && <small>{errors.budget}</small>}
 
@@ -92,6 +95,7 @@ export default class AddJob extends Component {
             name="description"
             placeholder="What is this job about?"
             onChange={this.onChange}
+            className={errors.description ? 'error' : ''}
           />
           {errors.description && <small>{errors.description}</small>}
 
@@ -101,6 +105,7 @@ export default class AddJob extends Component {
             name="contactEmail"
             placeholder="Your email"
             onChange={this.onChange}
+            className={errors.contactEmail ? 'error' : ''}
           />
           {errors.contactEmail && <small>{errors.contactEmail}</small>}
 
