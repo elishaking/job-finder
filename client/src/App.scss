@@ -20,6 +20,67 @@ a {
   text-decoration: none;
 }
 
+button {
+  display: block;
+  background-color: $baseColor;
+  color: white;
+  border-radius: 5px;
+  padding: 0.7em 1.4em;
+  margin-top: 2em;
+  outline: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+button.outline {
+  color: $baseColor;
+  background-color: white;
+  border: 1px solid $baseColor;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+button.outline:hover {
+  background-color: $baseColor;
+  color: white;
+}
+
+.search-form {
+  max-width: 700px;
+  margin: 50% auto 3em auto;
+
+  input {
+    display: block;
+    width: 100%;
+    margin-top: .3em;
+    padding: 0.7em 1.4em;
+    outline: none;
+    font-family: inherit;
+    border-radius: 5px;
+    border: 1px solid $baseColor;
+    transition: 0.3s ease-in-out;
+  }
+
+  input:focus {
+    box-shadow: 0 0 5px 1px rgba($color: $baseColor, $alpha: .3);
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+
+    button {
+      margin-right: 0.5em;
+      margin-left: 0.5em;
+    }
+  }
+}
+
 .jobs {
   margin-top: 1em;
 
@@ -94,23 +155,5 @@ a {
 
   small {
     color: red;
-  }
-
-  button {
-    display: block;
-    background-color: $baseColor;
-    color: white;
-    border-radius: 5px;
-    padding: 0.7em 1.4em;
-    margin-top: 2em;
-    outline: none;
-    border: none;
-    font-family: inherit;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-  }
-
-  button:hover {
-    opacity: 0.7;
   }
 }

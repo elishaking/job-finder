@@ -44,6 +44,11 @@ export default class Home extends Component {
             type="text"
             name="search"
             onChange={this.onChange} />
+
+          <div className="actions">
+            <button type="submit">Search</button>
+            <button className="outline">All Jobs</button>
+          </div>
         </form>
       </div>
     )
