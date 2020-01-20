@@ -33,6 +33,8 @@ const findJobs = () => new Promise((resolve) => {
 const createJob = (jobData) => new Promise((resolve) => {
   const { isValid, errors } = validateJobInput(jobData);
 
+  // const {title, technologies, budget, description, contactEmail} = jobData;
+
   if (!isValid)
     resolve(ResponseUtil.createResponse(
       false,

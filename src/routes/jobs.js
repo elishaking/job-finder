@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { findJobs, addJob, searchJobs } = require('../controllers/jobs');
+const { getJobs, addJob, searchForJobs } = require('../controllers/jobs');
 
 router.route('/')
-  .get(findJobs)
+  .get(getJobs)
   .post(addJob);
 
 router.route('/search')
-  .get(searchJobs);
+  .get(searchForJobs);
 
 module.exports = router;
