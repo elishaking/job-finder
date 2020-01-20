@@ -27,4 +27,11 @@ const validateJobInput = (data) => {
     errors.contactEmail = "Please add a Contact Email";
   else if (data.contactEmail.length > 200)
     errors.contactEmail = "Contact Email should be less than 200 characters";
+
+  return {
+    isValid: Object.keys(errors).length === 0,
+    errors
+  };
 };
+
+module.exports = { validateJobInput };

@@ -1,5 +1,7 @@
 const express = require('express');
 const Job = require('../models/Job');
+const ResponseUtil = require('../utils/response');
+const { validateJobInput } = require('../validation/jobs');
 
 /**
  * @param {express.Request} req
@@ -33,6 +35,19 @@ const addJob = (req, res) => {
   const data = req.body;
 
   // const {title, technologies, budget, description, contactEmail} = data;
+  const { isValid, errors } = validateJobInput(data);
+
+  if (!isValid)
+    return ResponseUtil.sendResponse(
+      res,
+      ResponseUtil.createResponse(
+        false,
+        400,
+        "Wrong input",
+        errors
+      )
+    );
+
   Job.create(data)
     .then((job) => {
       res.status(201)
