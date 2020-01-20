@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Spinner from '../Spinner';
 
 export default class Home extends Component {
   state = {
@@ -11,6 +12,7 @@ export default class Home extends Component {
     e.preventDefault();
 
     this.setState({ loading: true });
+    return;
 
     const { search } = this.state;
     fetch(`/api/v1/jobs/search?term=${search}`)
@@ -35,6 +37,8 @@ export default class Home extends Component {
   };
 
   render() {
+    const { loading } = this.state;
+
     return (
       <div>
         <form onSubmit={this.searchJobs} className="search-form">
@@ -52,6 +56,8 @@ export default class Home extends Component {
               className="outline"
               onClick={() => this.props.history.push('/jobs')}>All Jobs</button>
           </div>
+
+          {loading && <Spinner />}
         </form>
       </div>
     )
