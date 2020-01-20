@@ -11,8 +11,9 @@ export default class Home extends Component {
   searchJobs = (e) => {
     e.preventDefault();
 
-    const { search } = this.state;
-    if (search === '') return;
+    const { search, loading } = this.state;
+
+    if (loading || search === '') return;
 
     this.setState({ loading: true });
 
@@ -52,7 +53,7 @@ export default class Home extends Component {
             onChange={this.onChange} />
 
           <div className="actions">
-            <button type="submit">Search</button>
+            <button disabled={loading} type="submit">Search</button>
             <button
               className="outline"
               onClick={() => this.props.history.push('/jobs')}>All Jobs</button>
