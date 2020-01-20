@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Spinner from '../Spinner';
 
 export default class AddJob extends Component {
   state = {
@@ -16,7 +17,9 @@ export default class AddJob extends Component {
   addJob = (e) => {
     e.preventDefault();
 
-    const { title, technologies, budget, description, contactEmail } = this.state;
+    const { title, technologies, budget, description, contactEmail, loading } = this.state;
+
+    if (loading) return;
 
     const newJob = {
       title, technologies, budget, description, contactEmail
@@ -52,7 +55,7 @@ export default class AddJob extends Component {
   };
 
   render() {
-    const { errors } = this.state;
+    const { errors, loading } = this.state;
 
     return (
       <div>
@@ -109,7 +112,9 @@ export default class AddJob extends Component {
           />
           {errors.contactEmail && <small>{errors.contactEmail}</small>}
 
-          <button type="submit">Add Job</button>
+          <button type="submit" disabled={loading}>Add Job</button>
+
+          {loading && <Spinner />}
         </form>
       </div>
     );
