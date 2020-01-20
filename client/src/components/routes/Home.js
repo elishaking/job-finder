@@ -18,9 +18,8 @@ export default class Home extends Component {
       .then((resData) => {
         this.setState({ loading: false });
 
-        this.props.history.push({
-          pathname: '/jobs',
-          state: { jobs: resData.data }
+        this.props.history.push('/jobs', {
+          jobs: resData.data
         });
       })
       .catch((err) => {

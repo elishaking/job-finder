@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 
 export default class Jobs extends Component {
   state = {
-    jobs: []
+    jobs: [],
   };
 
   componentDidMount() {
+    const { jobs } = this.props.location.state;
+    if (jobs) {
+      this.setState({ jobs });
+
+      return;
+    }
+
     fetch('/api/v1/jobs')
       .then((res) => res.json())
       .then((data) => {
