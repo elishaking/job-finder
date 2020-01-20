@@ -3,6 +3,10 @@ const Sequelize = require('sequelize');
 const Job = require('../models/Job');
 const ResponseUtil = require('../utils/response');
 
+/**
+ * @description GET all jobs from database
+ * @returns {Promise<{success: boolean, statusCode: number, message: string, data?: any}>}
+ */
 const findJobs = () => new Promise((resolve) => {
   Job.findAll()
     .then((jobs) => {
