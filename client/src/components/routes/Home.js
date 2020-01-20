@@ -11,10 +11,11 @@ export default class Home extends Component {
   searchJobs = (e) => {
     e.preventDefault();
 
-    this.setState({ loading: true });
-    return;
-
     const { search } = this.state;
+    if (search === '') return;
+
+    this.setState({ loading: true });
+
     fetch(`/api/v1/jobs/search?term=${search}`)
       .then((res) => res.json())
       .then((resData) => {
