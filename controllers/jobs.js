@@ -1,4 +1,7 @@
 const express = require('express');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 const Job = require('../models/Job');
 const ResponseUtil = require('../utils/response');
 const { validateJobInput } = require('../validation/jobs');
@@ -66,7 +69,44 @@ const addJob = (req, res) => {
     });
 };
 
+/**
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+const searchJobs = (req, res) => {
+  const { term } = req.query;
+
+  Job.findAll({
+    where: {
+      technologies: {
+        [Op.like]: `%${term}%`
+      }
+    }
+  })
+    .then((jobs) => ResponseUtil.sendResponse(
+      res,
+      ResponseUtil.createResponse(
+        true,
+        200,
+        jobs.length === 0 ? "No Result found" : "Search Results found",
+        jobs
+      )
+    ))
+    .catch((err) => {
+      console.log(err);
+
+      ResponseUtil.sendResponse(res,
+        ResponseUtil.createResponse(
+          false,
+          500,
+          "Server Error"
+        )
+      );
+    });
+};
+
 module.exports = {
   findJobs,
-  addJob
+  addJob,
+  searchJobs
 };
