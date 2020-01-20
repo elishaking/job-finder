@@ -61,7 +61,55 @@ const createJob = (jobData) => new Promise((resolve) => {
     });
 });
 
+const searchJobs = (query) => new Promise((resolve) => {
+  let camelCaseTerm = query.toLowerCase().split('');
+  camelCaseTerm[0] = camelCaseTerm[0].toUpperCase();
+
+  Job.findAll({
+    where: {
+      [Op.or]: [
+        {
+          technologies: {
+            [Op.like]: `%${query}%`
+          }
+        },
+        {
+          technologies: {
+            [Op.like]: `%${query.toLowerCase()}%`
+          }
+        },
+        {
+          technologies: {
+            [Op.like]: `%${query.toUpperCase()}%`
+          }
+        },
+        {
+          technologies: {
+            [Op.like]: `%${camelCaseTerm.join('')}%`
+          }
+        },
+      ]
+    }
+  })
+    .then((jobs) => resolve(ResponseUtil.createResponse(
+      true,
+      200,
+      jobs.length === 0 ? "No Result found" : "Search Results found",
+      jobs
+    )))
+    .catch((err) => {
+      console.log(err);
+
+      resolve(ResponseUtil.createResponse(
+        false,
+        500,
+        "Server Error"
+      ));
+    });
+});
+
 module.exports = {
   findJobs,
-  createJob
+  createJob,
+  searchJobs
 };
