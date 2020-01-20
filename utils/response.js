@@ -14,6 +14,10 @@ const ResponseUtil = {
     data
   }),
 
+  /**
+   * @param {express.Response} res
+   * @param {any} responseData
+   */
   sendResponse: (res, responseData) => {
     res.status(responseData.statusCode)
       .json(responseData);
