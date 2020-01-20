@@ -1,9 +1,9 @@
 const express = require('express');
 
 const dotenv = require('dotenv');
-dotenv.config({ path: './config/config.env' });
+dotenv.config({ path: './src/config/config.env' });
 
-const db = require('./config/db');
+const db = require('./src/config/db');
 
 db.authenticate()
   .then(() => console.log('DB connected'))
@@ -20,7 +20,7 @@ server.get('/', (_, res) => {
 });
 
 // routes
-const jobs = require('./routes/jobs');
+const jobs = require('./src/routes/jobs');
 server.use('/api/v1/jobs', jobs);
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
