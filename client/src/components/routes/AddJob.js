@@ -8,6 +8,8 @@ export default class AddJob extends Component {
     description: '',
     contactEmail: '',
 
+    errors: {},
+
     loading: false
   };
 
@@ -29,8 +31,13 @@ export default class AddJob extends Component {
         "Content-Type": "application/json"
       }
     }).then((res) => res.json())
-      .then((data) => {
+      .then((resData) => {
         this.setState({ loading: false });
+
+        if (resData.success)
+          return this.props.history.replace('/jobs');
+
+        this.setState({ errors: resData.data });
       })
       .catch((err) => {
         this.setState({ loading: false });
@@ -45,6 +52,8 @@ export default class AddJob extends Component {
   };
 
   render() {
+    const { errors } = this.state;
+
     return (
       <div>
         <h1>Add Job</h1>
@@ -57,6 +66,7 @@ export default class AddJob extends Component {
             placeholder="e.g. Full Stack Engineer"
             onChange={this.onChange}
           />
+          {errors.title && <small>{errors.title}</small>}
 
           <label htmlFor="title">Technologies</label>
           <input
@@ -65,6 +75,7 @@ export default class AddJob extends Component {
             placeholder="e.g. PERN, Angular, MERN, Vue"
             onChange={this.onChange}
           />
+          {errors.technologies && <small>{errors.technologies}</small>}
 
           <label htmlFor="title">Budget</label>
           <input
@@ -73,6 +84,7 @@ export default class AddJob extends Component {
             placeholder="e.g. 500000"
             onChange={this.onChange}
           />
+          {errors.budget && <small>{errors.budget}</small>}
 
           <label htmlFor="title">Description</label>
           <input
@@ -81,6 +93,7 @@ export default class AddJob extends Component {
             placeholder="What is this job about?"
             onChange={this.onChange}
           />
+          {errors.description && <small>{errors.description}</small>}
 
           <label htmlFor="title">Contact Email</label>
           <input
@@ -89,6 +102,7 @@ export default class AddJob extends Component {
             placeholder="Your email"
             onChange={this.onChange}
           />
+          {errors.contactEmail && <small>{errors.contactEmail}</small>}
 
           <button type="submit">Add Job</button>
         </form>
