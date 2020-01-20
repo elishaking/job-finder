@@ -20,6 +20,10 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  color: $baseColor;
+}
+
 button {
   display: block;
   background-color: $baseColor;
@@ -52,6 +56,11 @@ button.outline:hover {
 .search-form {
   max-width: 700px;
   margin: 50% auto 3em auto;
+
+  h1 {
+    margin-bottom: 0.5em;
+    text-align: center;
+  }
 
   input {
     display: block;

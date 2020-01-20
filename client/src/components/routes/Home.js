@@ -37,9 +37,9 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
-
         <form onSubmit={this.searchJobs} className="search-form">
+          <h1>Find a Coding Job</h1>
+
           <input
             type="text"
             name="search"
