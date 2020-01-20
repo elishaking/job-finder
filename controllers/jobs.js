@@ -75,12 +75,34 @@ const addJob = (req, res) => {
  */
 const searchJobs = (req, res) => {
   const { term } = req.query;
+  let camelCaseTerm = term.toLowerCase().split('');
+  camelCaseTerm[0] = camelCaseTerm[0].toUpperCase();
+  console.log(camelCaseTerm.join(''));
 
   Job.findAll({
     where: {
-      technologies: {
-        [Op.like]: `%${term}%`
-      }
+      [Op.or]: [
+        {
+          technologies: {
+            [Op.like]: `%${term}%`
+          }
+        },
+        {
+          technologies: {
+            [Op.like]: `%${term.toLowerCase()}%`
+          }
+        },
+        {
+          technologies: {
+            [Op.like]: `%${term.toUpperCase()}%`
+          }
+        },
+        {
+          technologies: {
+            [Op.like]: `%${camelCaseTerm.join('')}%`
+          }
+        },
+      ]
     }
   })
     .then((jobs) => ResponseUtil.sendResponse(
