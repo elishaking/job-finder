@@ -68,7 +68,7 @@ export default class AddJob extends Component {
           />
           {errors.title && <small>{errors.title}</small>}
 
-          <label htmlFor="title">Technologies</label>
+          <label htmlFor="technologies">Technologies</label>
           <input
             type="text"
             name="technologies"
@@ -77,7 +77,7 @@ export default class AddJob extends Component {
           />
           {errors.technologies && <small>{errors.technologies}</small>}
 
-          <label htmlFor="title">Budget</label>
+          <label htmlFor="budget">Budget</label>
           <input
             type="number"
             name="budget"
@@ -86,7 +86,7 @@ export default class AddJob extends Component {
           />
           {errors.budget && <small>{errors.budget}</small>}
 
-          <label htmlFor="title">Description</label>
+          <label htmlFor="description">Description</label>
           <input
             type="text"
             name="description"
@@ -95,7 +95,7 @@ export default class AddJob extends Component {
           />
           {errors.description && <small>{errors.description}</small>}
 
-          <label htmlFor="title">Contact Email</label>
+          <label htmlFor="contactEmail">Contact Email</label>
           <input
             type="email"
             name="contactEmail"
