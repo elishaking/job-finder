@@ -6,6 +6,15 @@ nav {
   justify-content: space-between;
   margin-bottom: 2em;
 
+  h1 {
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+
+  h1:hover {
+    opacity: 0.7;
+  }
+
   ul {
     display: flex;
     list-style: none;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-export default function Navbar() {
+function Navbar(props) {
   return (
     <nav>
-      <h1>Code Jobs</h1>
+      <h1 onClick={() => props.history.replace('/')}>Code Jobs</h1>
 
       <ul>
         <li><Link to="/">Home</Link></li>
@@ -14,3 +14,5 @@ export default function Navbar() {
     </nav>
   )
 }
+
+export default withRouter(Navbar);
