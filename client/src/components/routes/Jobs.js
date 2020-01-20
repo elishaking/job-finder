@@ -6,8 +6,8 @@ export default class Jobs extends Component {
   };
 
   componentDidMount() {
-    const { jobs } = this.props.location.state;
-    if (jobs) {
+    if (this.props.location.state) {
+      const { jobs } = this.props.location.state;
       this.setState({ jobs });
 
       return;
