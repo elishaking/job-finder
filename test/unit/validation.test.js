@@ -15,4 +15,19 @@ describe('validateJobInput() Unit Tests', () => {
     expect(validationResult.isValid).toBe(true);
     expect(validationResult.errors).toEqual({});
   });
+
+  it('validateJobInput() - should validate empty data fields as inValid', () => {
+    const data = {
+      title: '',
+      technologies: '',
+      budget: 0,
+      description: '',
+      contactEmail: ''
+    };
+
+    const validationResult = validateJobInput(data);
+
+    expect(validationResult.isValid).toBe(false);
+  });
+
 });
