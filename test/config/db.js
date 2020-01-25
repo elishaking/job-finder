@@ -1,9 +1,14 @@
+if (process.env.NODE_ENV !== 'CI') {
+  const dotenv = require('dotenv');
+  dotenv.config({ path: './test/config/config.env' });
+}
+
 const { Sequelize } = require('sequelize');
 
-const dotenv = require('dotenv');
-dotenv.config({ path: './config.env' });
-
-const db = process.env.NODE_ENV === 'test' ? new Sequelize(
+console.log(process.env.DB_NAME,
+  'postgres',
+  process.env.DB_PASSWORD);
+const db = process.env.NODE_ENV !== 'CI' ? new Sequelize(
   process.env.DB_NAME,
   'postgres',
   process.env.DB_PASSWORD,
@@ -21,17 +26,18 @@ const db = process.env.NODE_ENV === 'test' ? new Sequelize(
   }
 );
 
-const connect = () => new Promise((resolve, reject) => {
-  db.authenticate()
-    .then(() => {
-      console.log('Test DB connected');
-      resolve();
-    })
-    .catch((err) => {
-      console.log('Error: ' + err);
-      reject(err);
-    });
-});
+const connect = () => db.authenticate();
+// new Promise((resolve, reject) => {
+//   db.authenticate()
+//     .then(() => {
+//       console.log('Test DB connected');
+//       resolve();
+//     })
+//     .catch((err) => {
+//       console.log('Error: ' + err);
+//       reject(err);
+//     });
+// });
 
 const close = () => db.close();
 
