@@ -99,6 +99,17 @@ button.outline:hover {
   }
 }
 
+.heading {
+  display: flex;
+  justify-content: space-between;
+
+  select {
+    outline: none;
+    border-radius: 5px;
+    border-color: $baseColor;
+  }
+}
+
 .jobs {
   margin-top: 1em;
 
