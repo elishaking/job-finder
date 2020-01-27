@@ -30,6 +30,11 @@ const findJobs = () => new Promise((resolve) => {
     });
 });
 
+/**
+ * Creates a new job in the database
+ * @param {{title: string, technologies: string, budget: number, description: string, contactEmail: string}} jobData 
+ * @returns {Promise<{success: boolean, statusCode: number, message: string, data?: any}>}
+ */
 const createJob = (jobData) => new Promise((resolve) => {
   const { isValid, errors } = validateJobInput(jobData);
 
@@ -63,6 +68,11 @@ const createJob = (jobData) => new Promise((resolve) => {
     });
 });
 
+/**
+ * Searches for jobs in the database
+ * @param {string} query 
+ * @returns {Promise<{success: boolean, statusCode: number, message: string, data?: any}>}
+ */
 const searchJobs = (query) => new Promise((resolve) => {
   let camelCaseTerm = query.toLowerCase().split('');
   camelCaseTerm[0] = camelCaseTerm[0].toUpperCase();
