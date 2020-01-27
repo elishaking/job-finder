@@ -50,5 +50,33 @@ describe('Job Service Unit tests', () => {
         done(err);
       });
   });
+
+  it('createJob() - should not create a job with invalid data in the database', (done) => {
+    const job = {
+      title: '',
+      technologies: "React, MongoDB",
+      budget: 200000,
+      description: '',
+      contactEmail: 'mail@mail.com'
+    };
+
+    createJob(job)
+      .then(({ success, statusCode, message, data }) => {
+        expect(success).toBe(false);
+        expect(statusCode).toEqual(400);
+        expect(message).toEqual('Wrong input');
+
+        expect(typeof data === 'object').toBe(true);
+        expect(data).toHaveProperty('title');
+        expect(data.title).toEqual('Please add a title');
+        expect(data).toHaveProperty('description');
+        expect(data.description).toEqual('Please add a description');
+
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
 });
 
