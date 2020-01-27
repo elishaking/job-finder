@@ -1,7 +1,6 @@
-if (process.env.NODE_ENV !== 'CI') {
-  const dotenv = require('dotenv');
-  dotenv.config({ path: './test/config/config.env' });
-}
+const dotenv = require('dotenv');
+dotenv.config({ path: './test/config/config.env' });
+
 const { createJob, findJobs, searchJobs } = require('../../../src/services/jobs');
 
 describe('Job Service Unit tests', () => {
