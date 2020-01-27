@@ -27,10 +27,6 @@ describe('Job Service Unit tests', () => {
     contactEmail: 'mail@mail.com'
   };
 
-  it('should return true', () => {
-    expect(true).toBe(true);
-  });
-
   // @ts-ignore
   const jobModel = Job.build(job);
 
