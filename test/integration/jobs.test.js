@@ -20,7 +20,7 @@ describe('Job Controller Integration Tests', () => {
       .catch((err) => done(err));
   });
 
-  it('GET /api/v1/jobs/search - should search for a location', (done) => {
+  it('GET /api/v1/jobs/search - should search for a job', (done) => {
     request(server)
       .get('/api/v1/jobs/search?term=React')
       .then((res) => {
