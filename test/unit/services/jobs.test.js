@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== 'CI') {
   const dotenv = require('dotenv');
   dotenv.config({ path: './test/config/config.env' });
 }
-const { createJob, findJobs } = require('../../../src/services/jobs');
+const { createJob, findJobs, searchJobs } = require('../../../src/services/jobs');
 
 describe('Job Service Unit tests', () => {
 
@@ -71,6 +71,19 @@ describe('Job Service Unit tests', () => {
         expect(data.title).toEqual('Please add a title');
         expect(data).toHaveProperty('description');
         expect(data.description).toEqual('Please add a description');
+
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  it('searchJobs() - should find all jobs in the database', (done) => {
+    searchJobs('React')
+      .then(({ data }) => {
+        expect(Array.isArray(data)).toBe(true);
+        expect(data[0].technologies).toMatch(/React/);
 
         done();
       })
