@@ -28,7 +28,10 @@ describe('Job Service Unit tests', () => {
     };
 
     createJob(job)
-      .then(({ data }) => {
+      .then(({ success, statusCode, data }) => {
+        expect(success).toBe(true);
+        expect(statusCode).toEqual(201);
+
         expect(typeof data === 'object').toBe(true);
         expect(data).toHaveProperty('title');
         expect(data.title).toEqual(job.title);
