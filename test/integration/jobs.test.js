@@ -5,7 +5,7 @@ const server = require('../../server');
 const request = require('supertest');
 
 describe('Job Controller Integration Tests', () => {
-  it('GET /api/v1/jobs - should get all locations', (done) => {
+  it('GET /api/v1/jobs - should get all jobs', (done) => {
     request(server)
       .get('/api/v1/jobs')
       .then((res) => {
