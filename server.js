@@ -23,4 +23,7 @@ server.get('/', (_, res) => {
 const jobs = require('./src/routes/jobs');
 server.use('/api/v1/jobs', jobs);
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (process.env.NODE_ENV !== 'test')
+  server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+module.exports = server;
