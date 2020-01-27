@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../config/db');
+const db = process.env.NODE_ENV === 'development' ? require('../config/db') : require('../../test/config/db').sequelize;
 
 const Job = db.define('job', {
   title: {
