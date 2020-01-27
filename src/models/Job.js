@@ -19,7 +19,7 @@ const Job = db.define('job', {
   }
 });
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV === 'test') {
   const SequelizeMock = require('sequelize-mock');
   const dbMock = new SequelizeMock();
 
