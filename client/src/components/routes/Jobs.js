@@ -58,7 +58,7 @@ export default class Jobs extends Component {
     } else {
       this.setState({ loading: true });
 
-      fetch('https://jobs.github.com/positions.json?search=node&page', {
+      fetch('/positions.json?description=python&location=new+york', {
         mode: 'no-cors',
 
       })
