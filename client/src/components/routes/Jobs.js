@@ -30,7 +30,6 @@ export default class Jobs extends Component {
     fetch('/api/v1/jobs')
       .then((res) => res.json())
       .then((resData) => {
-        console.log(resData)
         if (resData.success) {
           this.setState({
             jobs: resData.data,
@@ -60,7 +59,10 @@ export default class Jobs extends Component {
     } else {
       this.setState({ loading: true });
 
-      fetch('/positions.json')
+      const url = this.props.location.state ?
+        `/positions.json?search=${this.props.location.state.term}` : '/positions.json';
+      console.log(url);
+      fetch(url)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

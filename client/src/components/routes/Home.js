@@ -23,6 +23,7 @@ export default class Home extends Component {
         this.setState({ loading: false });
 
         this.props.history.push('/jobs', {
+          term: search,
           jobs: resData.data
         });
       })
