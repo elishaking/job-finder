@@ -60,7 +60,7 @@ export default class Jobs extends Component {
     } else {
       this.setState({ loading: true });
 
-      fetch('/positions.json?description=python&location=new+york')
+      fetch('/positions.json')
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -96,7 +96,7 @@ export default class Jobs extends Component {
                   </h2>
                   {job.company && <h3>{job.company}</h3>}
                   {job.budget && <small>${job.budget} &middot; {job.technologies}</small>}
-                  <div
+                  <div className="description"
                     dangerouslySetInnerHTML={{ __html: job.description }}>
                   </div>
                   {job.how_to_apply && (() => {
