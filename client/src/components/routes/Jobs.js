@@ -51,6 +51,8 @@ export default class Jobs extends Component {
     if (this.category === category)
       return;
 
+    this.category = category;
+
     if (category === JOB_CATEGORY.SAVED) {
       this.setState({ loading: true });
 
@@ -58,22 +60,14 @@ export default class Jobs extends Component {
     } else {
       this.setState({ loading: true });
 
-      fetch('/positions.json?description=python&location=new+york', {
-        mode: 'no-cors',
-
-      })
+      fetch('/positions.json?description=python&location=new+york')
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
+          console.log(data);
+
+          this.setState({ jobs: data, loading: false });
         })
         .catch((err) => console.log(err));
-
-      // axios.get('https://jobs.github.com/positions.json?search=node', {
-      //   headers: {
-
-      //   }
-      // })
-      //   .then((res) => console.log(res.data));
     }
   };
 
@@ -96,9 +90,21 @@ export default class Jobs extends Component {
             loading ? (<Spinner />) :
               jobs.map((job, index) => (
                 <div key={index} className="job">
-                  <h2>{job.title}</h2>
-                  <small>${job.budget} &middot; {job.technologies}</small>
-                  <p>{job.description}</p>
+                  <h2>
+                    {job.title}
+                    {job.type && <span> &middot; {job.type}</span>}
+                  </h2>
+                  {job.company && <h3>{job.company}</h3>}
+                  {job.budget && <small>${job.budget} &middot; {job.technologies}</small>}
+                  <div
+                    dangerouslySetInnerHTML={{ __html: job.description }}>
+                  </div>
+                  {job.how_to_apply && (() => {
+                    const r = /<a href="(.*)">|<a href='(.*)'>/;
+                    const link = r.exec(job.how_to_apply)[1];
+
+                    return <a className="apply-link" href={link} target="_blank" rel="noopener noreferrer">Apply</a>
+                  })()}
                   <small>{job.contactEmail}</small>
                 </div>
               ))
