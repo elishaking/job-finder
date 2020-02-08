@@ -41,10 +41,14 @@ export default class Home extends Component {
 
   render() {
     const { loading } = this.state;
+    const { testProp } = this.props;
 
     return (
-      <div>
-        <form onSubmit={this.searchJobs} className="search-form">
+      <div data-test="homeComponent">
+        <form
+          onSubmit={this.searchJobs}
+          className="search-form"
+          data-test="searchForm">
           <h1>Find a Coding Job</h1>
 
           <input
@@ -53,7 +57,7 @@ export default class Home extends Component {
             placeholder="e.g. react, MERN, etc"
             onChange={this.onChange} />
 
-          <div className="actions">
+          <div className="actions" data-test="actions">
             <button disabled={loading} type="submit">Search</button>
             <button
               className="outline"
@@ -62,6 +66,8 @@ export default class Home extends Component {
 
           {loading && <Spinner />}
         </form>
+
+        {testProp && <p data-test="test">Testing...</p>}
       </div>
     )
   }
