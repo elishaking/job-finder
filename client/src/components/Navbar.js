@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom';
 
 export function Navbar(props) {
   return (
-    <nav>
+    <nav data-test="navbarComponent">
       <h1 onClick={() => props.history.replace('/')}>Code Jobs</h1>
 
       <ul>
