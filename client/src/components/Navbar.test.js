@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Navbar } from './Navbar';
+import { findByTestAttr } from '../utils/testUtils';
 
 /**
  * Shallow render the navbar component
@@ -10,17 +11,6 @@ const setUp = (props = {}) => {
   const component = shallow(<Navbar {...props} />);
 
   return component;
-};
-
-/**
- * 
- * @param {ShallowWrapper} component 
- * @param {string} attr 
- */
-const findByTestAttr = (component, attr) => {
-  const wrapper = component.find(`[data-test='${attr}']`);
-
-  return wrapper;
 };
 
 describe('Navbar Component', () => {
