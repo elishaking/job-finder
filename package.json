@@ -21,8 +21,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "cd client && yarn start",
+    "dev": "nodemon server.js",
     "test": "jest test/"
   }
 }
