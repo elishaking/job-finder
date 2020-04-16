@@ -11,9 +11,9 @@ db.authenticate()
   .then(() => {
     console.log("DB connected");
 
-    return syncTables();
+    // return syncTables();
   })
-  .then(() => console.log("Tabeles Synced"))
+  // .then(() => console.log("Tabeles Synced"))
   .catch((err) => console.log("Error: " + err));
 
 const server = express();
