@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./src/config/config.env" });
 
 const db = require("./src/config/db");
-const { syncTables } = require("./src/utils/db");
+// const { syncTables } = require("./src/utils/db");
 const allowCrossDomain = require("./src/utils/cors");
 
 db.authenticate()
