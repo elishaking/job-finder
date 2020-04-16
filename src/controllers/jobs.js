@@ -46,6 +46,7 @@ const searchForJobs = (req, res) => {
 
 module.exports = {
   getJobs,
+  getJobsOnline,
   addJob,
   searchForJobs,
 };
