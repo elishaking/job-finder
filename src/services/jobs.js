@@ -1,3 +1,4 @@
+const axios = require("axios").default;
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -9,8 +10,29 @@ const { validateJobInput } = require("../validation/jobs");
  * @description GET all jobs from database
  * @returns {Promise<{success: boolean, statusCode: number, message: string, data?: any}>}
  */
-const findJobs = () =>
+const findJobs = (online = false, searchQuery = "") =>
   new Promise((resolve) => {
+    if (online) {
+      const url =
+        "https://jobs.github.com/positions.json" + searchQuery === ""
+          ? ""
+          : `?search=${searchQuery}`;
+      return axios
+        .get(url)
+        .then((res) => {
+          const data = res.data;
+          ResponseUtil.createResponse(
+            true,
+            200,
+            data?.length === 0 ? "No Jobs found" : "Jobs found",
+            data
+          );
+        })
+        .catch((err) =>
+          resolve(ResponseUtil.createResponse(false, 500, "Server Error"))
+        );
+    }
+
     Job.findAll()
       .then((jobs) => {
         resolve(
