@@ -18,10 +18,9 @@ const getJobs = (req, res) => {
 const getJobsOnline = (req, res) => {
   const searchQuery = req.params.searchQuery;
 
-  findJobs({
-    online: true,
-    searchQuery,
-  }).then((resData) => ResponseUtil.sendResponse(res, resData));
+  findJobs(true, searchQuery).then((resData) =>
+    ResponseUtil.sendResponse(res, resData)
+  );
 };
 
 /**
