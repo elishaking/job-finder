@@ -4,10 +4,16 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./src/config/config.env" });
 
 const db = require("./src/config/db");
+const { syncTables } = require("./src/utils/db");
 const allowCrossDomain = require("./src/utils/cors");
 
 db.authenticate()
-  .then(() => console.log("DB connected"))
+  .then(() => {
+    console.log("DB connected");
+
+    return syncTables();
+  })
+  .then(() => console.log("Tabeles Synced"))
   .catch((err) => console.log("Error: " + err));
 
 const server = express();

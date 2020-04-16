@@ -24,6 +24,8 @@ const Job = db.define("job", {
   },
 });
 
+Job.sync();
+
 if (process.env.NODE_ENV === "test") {
   const SequelizeMock = require("sequelize-mock");
   const dbMock = new SequelizeMock();
