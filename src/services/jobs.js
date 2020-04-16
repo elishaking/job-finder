@@ -10,7 +10,7 @@ const { validateJobInput } = require("../validation/jobs");
  * @description GET all jobs from database
  * @returns {Promise<{success: boolean, statusCode: number, message: string, data?: any}>}
  */
-const findJobs = (online = false, searchQuery = "") =>
+const findJobs = ({ online = false, searchQuery = "" }) =>
   new Promise((resolve) => {
     if (online) {
       const url =

@@ -1,18 +1,27 @@
-const express = require('express');
+const express = require("express");
 
-const ResponseUtil = require('../utils/response');
-const { findJobs, createJob, searchJobs } = require('../services/jobs');
+const ResponseUtil = require("../utils/response");
+const { findJobs, createJob, searchJobs } = require("../services/jobs");
 
 /**
  * @param {express.Request} req
  * @param {express.Response} res
  */
 const getJobs = (req, res) => {
-  findJobs()
-    .then((resData) => ResponseUtil.sendResponse(
-      res,
-      resData
-    ));
+  findJobs().then((resData) => ResponseUtil.sendResponse(res, resData));
+};
+
+/**
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+const getJobsOnline = (req, res) => {
+  const searchQuery = req.params.searchQuery;
+
+  findJobs({
+    online: true,
+    searchQuery,
+  }).then((resData) => ResponseUtil.sendResponse(res, resData));
 };
 
 /**
@@ -22,11 +31,7 @@ const getJobs = (req, res) => {
 const addJob = (req, res) => {
   const data = req.body;
 
-  createJob(data)
-    .then((resData) => ResponseUtil.sendResponse(
-      res,
-      resData
-    ));
+  createJob(data).then((resData) => ResponseUtil.sendResponse(res, resData));
 };
 
 /**
@@ -36,15 +41,11 @@ const addJob = (req, res) => {
 const searchForJobs = (req, res) => {
   const { term } = req.query;
 
-  searchJobs(term)
-    .then((resData) => ResponseUtil.sendResponse(
-      res,
-      resData
-    ));
+  searchJobs(term).then((resData) => ResponseUtil.sendResponse(res, resData));
 };
 
 module.exports = {
   getJobs,
   addJob,
-  searchForJobs
+  searchForJobs,
 };
